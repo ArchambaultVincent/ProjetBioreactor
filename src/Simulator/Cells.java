@@ -5,7 +5,7 @@ package Simulator;
  * cette classe determine les caractéristique propre a la cellule
  */
 public class Cells {
-private double saturation;
+private double saturation=1.34;
 private double grothRate ;
 private double yield;
 

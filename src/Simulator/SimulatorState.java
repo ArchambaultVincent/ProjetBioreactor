@@ -7,18 +7,28 @@ public class SimulatorState {
     private double ph;
     private double Do2;
     private double quantities;
+    private double substrate;
     private double Temp;
 
-    public SimulatorState(double ph, double do2, double quantities, double temp) {
+    public SimulatorState(double ph, double do2, double quantities,double substrate, double temp) {
         this.ph = ph;
-        Do2 = do2;
+        this.Do2 = do2;
         this.quantities = quantities;
-        Temp = temp;
+        this.Temp = temp;
+        this.substrate=substrate;
     }
 
 
     @Override
     public String toString() {
-        return ph+";"+Do2+";"+quantities+";"+Temp+";";
+        return ph+";"+Do2+";"+quantities+";"+substrate+";"+Temp+";\n";
+    }
+
+    public double getSubstrate() {
+        return substrate;
+    }
+
+    public void setSubstrate(double substrate) {
+        this.substrate = substrate;
     }
 }

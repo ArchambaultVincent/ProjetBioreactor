@@ -6,6 +6,9 @@ public class Event {
     private Sensor target;
 
     public Event(Sensor target, String type, int timestamp) {
+        this.timestamp=timestamp;
+        this.type=type;
+        this.target=target;
     }
 
     public int getTimestamp() {
