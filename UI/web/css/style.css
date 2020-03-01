@@ -1,0 +1,7 @@
+.custom-checkbox .custom-control-label::before {
+    border-radius: 1.25em;
+}
+.custom-checkbox-input:checked .custom-control-label::before:checked{
+    border-color: green !important;
+    background-color: green !important;
+}
