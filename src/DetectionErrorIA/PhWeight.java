@@ -2,7 +2,7 @@ package DetectionErrorIA;
 
 
 public class PhWeight {
-    private Double weight;
+    private double weight;
     private String name;
 
     public PhWeight(String name) {
@@ -10,7 +10,7 @@ public class PhWeight {
         this.name = name;
     }
 
-    public Double getWeight() {
+    public double getWeight() {
         return weight;
     }
 

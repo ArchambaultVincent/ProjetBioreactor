@@ -1,7 +1,5 @@
 package DetectionErrorIA;
 
-import com.ucp.cookwithease.model.Recipe;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,25 +8,19 @@ import java.util.LinkedList;
 import static java.lang.Math.*;
 
 
-/**
- * @author Archambault Vincent
- * @version 1.0.0.0;
- *
- * Kohonen map code
- */
 public class Kohonen {
     private static final int DVP = 7;
     private static final int DVN = 9;
     private static final double EPSILON = 0.5;
     private static final double ALPHA = 0.125;
     private static final double BETA = 0.125;
-    private static final int NUM_NEURONS = 100;
+    private static final int NUM_NEURONS = 10;
     private static final int NUM_LEARN = 100;
 
     private String type;
     private LinkedList<Neuron> neurons;
     private LinkedList<Entry> entries;
-    private LinkedList<Category> clusters;
+    private LinkedList<ErrorCategory> clusters;
     private LinkedList<Recipe> recipes;
     private LinkedList<String> titles;
     private LinkedList<Integer> pickedEntries;

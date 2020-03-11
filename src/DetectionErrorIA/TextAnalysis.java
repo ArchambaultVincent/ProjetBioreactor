@@ -1,20 +1,5 @@
 package DetectionErrorIA;
 
-import com.ucp.ai_experiments.Constants;
-import com.ucp.cleaners.AITools;
-import com.ucp.cookwithease.model.Ingredient;
-import com.ucp.cookwithease.model.Recipe;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-
-
-/**
- * @author Archambault Vincent
- * @version 1.0.0.0;
- *
- * Recipes text analysis
- */
 public class TextAnalysis {
     private LinkedList<Entry> entries = new LinkedList<>();
     private LinkedList<PhWeight> maxIngredients = new LinkedList<>();
