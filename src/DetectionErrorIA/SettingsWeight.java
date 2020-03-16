@@ -1,12 +1,10 @@
 package DetectionErrorIA;
 
-
-public class PhWeight {
+public class SettingsWeight {
     private double weight;
     private String name;
 
-    public PhWeight(String name) {
-        weight = 0.0;
+    public SettingsWeight(String name) {
         this.name = name;
     }
 
@@ -14,7 +12,7 @@ public class PhWeight {
         return weight;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 

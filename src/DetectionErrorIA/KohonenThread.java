@@ -1,27 +1,24 @@
 package DetectionErrorIA;
 
-import com.ucp.cookwithease.model.Recipe;
-
 import java.util.LinkedList;
-
 
 public class KohonenThread extends Thread {
     private LinkedList<String> titles;
     private LinkedList<String> ingredients;
-    private LinkedList<Recipe> recipes;
+    private LinkedList<Error> errors;
     private Kohonen kohonen;
     private String type;
 
-    public KohonenThread(LinkedList<String> ingredients, LinkedList<Recipe> recipes, LinkedList<String> titles, String type) {
+    public KohonenThread(LinkedList<String> ingredients, LinkedList<Error> errors, LinkedList<String> titles, String type) {
         this.titles = titles;
-        this.recipes = recipes;
+        this.errors = errors;
         this.ingredients = ingredients;
         this.type = type;
     }
 
     public void run() {
         System.out.println("[KOHONEN: " + type.toUpperCase() + "] Initialization...");
-        kohonen = new Kohonen(ingredients, recipes, titles, type);
+        kohonen = new Kohonen(ingredients, errors, titles, type);
 
         System.out.println("[KOHONEN: " + type.toUpperCase() + "] Clustering...");
         kohonen.clusterize();

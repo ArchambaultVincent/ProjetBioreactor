@@ -1,36 +1,23 @@
 package DetectionErrorIA;
 
+import java.util.LinkedList;
+
 public class TextAnalysis {
     private LinkedList<Entry> entries = new LinkedList<>();
-    private LinkedList<PhWeight> maxIngredients = new LinkedList<>();
+    private LinkedList<SettingsWeight> settings = new LinkedList<>();
 
-    public TextAnalysis(LinkedList<String> ingredients, LinkedList<Recipe> recipes, LinkedList<String> titles) {
-        for (String ing : ingredients) {
-            if (!ing.equals("poivre") && !ing.equals("sel")) {
-                PhWeight iw = new PhWeight(ing);
-                maxIngredients.add(iw);
-            }
-        }
-
-        for (int index = 0; index < recipes.size(); index++) {
-            LinkedList<PhWeight> iwlist = new LinkedList<>();
-            LinkedList<PhWeight> twlist = new LinkedList<>();
+    public TextAnalysis(LinkedList<String> setttings, LinkedList<Error> errors, LinkedList<String> titles) {
+        for (int index = 0; index < errors.size(); index++) {
+            LinkedList<SettingsWeight> iwlist = new LinkedList<>();
+            LinkedList<SettingsWeight> twlist = new LinkedList<>();
 
             /* Create weights based on titles */
             for (String title : titles) {
-                PhWeight tw = new PhWeight(title);
+                SettingsWeight tw = new SettingsWeight(title);
                 twlist.add(tw);
             }
 
-            /* Create ingredient weights */
-            for (String ing : ingredients) {
-                if (!ing.equals("poivre") && !ing.equals("sel")) {
-                    PhWeight iw = new PhWeight(ing);
-                    iwlist.add(iw);
-                }
-            }
-
-            Entry en = new Entry(iwlist, twlist, recipes.get(index).getName());
+            Entry en = new Entry(iwlist, twlist, errors.get(index).getName());
             entries.add(en);
         }
     }

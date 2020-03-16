@@ -20,13 +20,13 @@ public class Kohonen {
     private String type;
     private LinkedList<Neuron> neurons;
     private LinkedList<Entry> entries;
-    private LinkedList<ErrorCategory> clusters;
-    private LinkedList<Recipe> recipes;
+    private LinkedList<Category> clusters;
+    private LinkedList<Error> errors;
     private LinkedList<String> titles;
     private LinkedList<Integer> pickedEntries;
 
-    public Kohonen(LinkedList<String> ingredients, LinkedList<Recipe> recipes, LinkedList<String> titles, String type) {
-        this.recipes = recipes;
+    public Kohonen(LinkedList<String> settings, LinkedList<Error> errors, LinkedList<String> titles, String type) {
+        this.errors = errors;
         this.titles = titles;
         this.type = type;
 
@@ -35,10 +35,10 @@ public class Kohonen {
         this.entries = new LinkedList<>();
         this.pickedEntries = new LinkedList<>();
 
-        TextAnalysis analysis = new TextAnalysis(ingredients, recipes, titles);
-        entries = analysis.analyze(recipes);
+        TextAnalysis analysis = new TextAnalysis(settings, errors, titles);
+        entries = analysis.analyze(errors);
 
-        initWeights(ingredients);
+        initWeights(settings);
     }
 
     private int pickEntry() {
@@ -55,12 +55,12 @@ public class Kohonen {
         return result;
     }
 
-    public void initWeights(LinkedList<String> ingredients) {
+    public void initWeights(LinkedList<String> settings) {
         for (int index = 0; index < NUM_NEURONS; index++) {
             Neuron neuron = new Neuron();
             Category category = new Category(NUM_NEURONS, index);
 
-            for (String ing : ingredients) {
+            for (String ing : settings) {
                 double val = random();
                 neuron.getWeights().add(val);
             }
@@ -207,14 +207,14 @@ public class Kohonen {
             action(entries.get(index));
             winner = getWinner();
 
-            clusters.get(winner).getRecipes().add(recipes.get(index));
+            clusters.get(winner).getRecipes().add(errors.get(index));
             clusters.get(winner).getDistance().add(neurons.get(winner).getPotential());
         }
 
         try {
             String disp = "";
             BufferedWriter writer2 = new BufferedWriter(
-                new FileWriter("./src/main/java/com/ucp/ai/csv/Recette" + recipes.get(0).getType() + ".csv"));
+                new FileWriter("./src/main/java/com/ucp/ai/csv/Recette" + errors.get(0).getType() + ".csv"));
 
             for (int index = 0; index < NUM_NEURONS; index++) {
                 for (int index2 = 0; index2 < clusters.get(index).getRecipes().size(); index2++) {
