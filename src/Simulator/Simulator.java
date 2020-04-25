@@ -44,7 +44,9 @@ public class Simulator {
         this.Ph=Ph;
         this.Do2=Do2;
         this.Temp=Temp;
+        grothRate_Init();
     }
+
     public void grothRate_Init(){
         StringBuilder sb = new StringBuilder();
         int index=0;
@@ -59,7 +61,6 @@ public class Simulator {
                 }
                 index++;
             }
-
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }
@@ -118,10 +119,9 @@ public class Simulator {
      *
      */
     public void Simulation(){
-        grothRate_Init();
         for( time=0;time < simulationTime ; time++){
             if(!events.isEmpty()) {
-                if (events.get(0).getTimestamp() == time) {
+                while(!events.isEmpty() && events.get(0).getTimestamp() == time) {
                         AnalyseEvent(events.get(0));
                         events.remove(0);
                 }
@@ -141,7 +141,16 @@ public class Simulator {
      */
     public void SimulationStep(){
         if(time < simulationTime){
+            if(!events.isEmpty()) {
+                while(!events.isEmpty() && events.get(0).getTimestamp() == time) {
+                    AnalyseEvent(events.get(0));
+                    events.remove(0);
+                }
+            }
             Production();
+            ph_Sensor.setSensor_value(Ph);
+            temp_Sensor.setSensor_value(Temp);
+            do2_Sensor.setSensor_value(Do2);
             SimulatorState state=new SimulatorState(ph_Sensor.getSensor_value(),do2_Sensor.getSensor_value(),biomass,substrate_concentration,temp_Sensor.getSensor_value());
             sim.add(state);
             time++;
@@ -183,6 +192,9 @@ public class Simulator {
             case "TEMP":
                 Temp=Double.parseDouble(Event[1]);
                 break;
+            case "DO":
+                Do2=Double.parseDouble(Event[1]);
+                break;
             case "BRUIT":
                 e.getTarget().setstate("BRUIT");
                 e.getTarget().setBruit(Integer.parseInt(Event[1]));
@@ -199,7 +211,7 @@ public class Simulator {
         BufferedWriter writer = null;
         String data=" ";
         try {
-            writer = new BufferedWriter(new FileWriter("./Simulation/"+simulationName+".csv"));
+            writer = new BufferedWriter(new FileWriter("./Simulation/result/"+simulationName+".csv"));
             for(SimulatorState state : sim){
                 data=data+state.toString();
             }
@@ -244,6 +256,9 @@ public class Simulator {
 
     public double getDo2() {
         return Do2;
+    }
+    public double getBiomass() {
+        return biomass;
     }
 
     public void setDo2(double do2) {
