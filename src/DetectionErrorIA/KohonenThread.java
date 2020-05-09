@@ -3,22 +3,19 @@ package DetectionErrorIA;
 import java.util.LinkedList;
 
 public class KohonenThread extends Thread {
-    private LinkedList<String> titles;
-    private LinkedList<String> ingredients;
     private LinkedList<Error> errors;
+    private LinkedList<String> settings;
     private Kohonen kohonen;
     private String type;
 
-    public KohonenThread(LinkedList<String> ingredients, LinkedList<Error> errors, LinkedList<String> titles, String type) {
-        this.titles = titles;
-        this.errors = errors;
-        this.ingredients = ingredients;
+    public KohonenThread(LinkedList<String> settings, String type) {
+        this.settings = settings;
         this.type = type;
     }
 
     public void run() {
         System.out.println("[KOHONEN: " + type.toUpperCase() + "] Initialization...");
-        kohonen = new Kohonen(ingredients, errors, titles, type);
+        kohonen = new Kohonen(settings, type);
 
         System.out.println("[KOHONEN: " + type.toUpperCase() + "] Clustering...");
         kohonen.clusterize();
