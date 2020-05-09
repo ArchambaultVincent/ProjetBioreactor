@@ -21,13 +21,10 @@ public class Kohonen {
     private LinkedList<Neuron> neurons;
     private LinkedList<Entry> entries;
     private LinkedList<Category> clusters;
-    private LinkedList<Error> errors;
     private LinkedList<String> titles;
     private LinkedList<Integer> pickedEntries;
 
-    public Kohonen(LinkedList<String> settings, LinkedList<Error> errors, LinkedList<String> titles, String type) {
-        this.errors = errors;
-        this.titles = titles;
+    public Kohonen(LinkedList<String> settings,String type) {
         this.type = type;
 
         this.clusters = new LinkedList<>();
@@ -35,8 +32,6 @@ public class Kohonen {
         this.entries = new LinkedList<>();
         this.pickedEntries = new LinkedList<>();
 
-        TextAnalysis analysis = new TextAnalysis(settings, errors, titles);
-        entries = analysis.analyze(errors);
 
         initWeights(settings);
     }
@@ -92,16 +87,16 @@ public class Kohonen {
     public int getWinner() {
         int winner = 0;
         double BestActivity = 0;
-        
+
         for (int index = 0; index < neurons.size(); index++) {
             double action = neurons.get(index).getAction();
-            
+
             if (action > BestActivity) {
                 BestActivity = neurons.get(index).getAction();
                 winner = index;
             }
         }
-        
+
         return winner;
     }
 
@@ -109,19 +104,19 @@ public class Kohonen {
         for (Neuron neuron : neurons) {
             double distance = 0;
             double distanceTitle = 0;
-            
+
             for (int index = 0; index < en.getData().size(); index++) {
                 double w1 = en.getData().get(index).getWeight();
                 double w2 = neuron.getWeights().get(index);
-                
+
                 double dist = w1 - w2;
                 distance = distance + pow(dist, 2);
             }
-            
+
             for (int index2 = 0; index2 < en.getDataTitles().size(); index2++) {
                 double w1 = en.getDataTitles().get(index2).getWeight();
                 double w2 = neuron.getWeightsTitle().get(index2);
-                
+
                 double dist = w1 - w2;
                 distanceTitle += pow((dist), 2);
             }
@@ -140,7 +135,7 @@ public class Kohonen {
         for (int index = 0; index < neurons.size(); index++) {
             double neighbour = neighbourhoodFunction(abs(winner - index));
             int size = neurons.get(index).getWeights().size();
-            
+
             for (int index2 = 0; index2 < size; index2++) {
                 entryWeight = entries.get(entry).getData().get(index2).getWeight();
                 neuronWeight = neurons.get(index).getWeights().get(index2);
@@ -207,14 +202,13 @@ public class Kohonen {
             action(entries.get(index));
             winner = getWinner();
 
-            clusters.get(winner).getRecipes().add(errors.get(index));
             clusters.get(winner).getDistance().add(neurons.get(winner).getPotential());
         }
 
         try {
             String disp = "";
             BufferedWriter writer2 = new BufferedWriter(
-                new FileWriter("./src/main/java/com/ucp/ai/csv/Recette" + errors.get(0).getType() + ".csv"));
+                new FileWriter("./Simulation/result/simtest.csv"));
 
             for (int index = 0; index < NUM_NEURONS; index++) {
                 for (int index2 = 0; index2 < clusters.get(index).getRecipes().size(); index2++) {
