@@ -4,12 +4,12 @@ import java.util.LinkedList;
 import static java.lang.Math.abs;
 
 public class Category {
-    private LinkedList<Error> errors;
+    private LinkedList<Entry> cat;
     private LinkedList<Double> distance;
     private int distanceCat[];
 
     public Category(int maxSize, int position) {
-        errors = new LinkedList<>();
+        cat = new LinkedList<>();
         distance = new LinkedList<>();
         distanceCat = new int[maxSize];
 
@@ -18,12 +18,12 @@ public class Category {
         }
     }
 
-    public LinkedList<Error> getRecipes() {
-        return errors;
+    public LinkedList<Entry> getCategory() {
+        return cat;
     }
 
-    public void setRecipes(LinkedList<Error> errors) {
-        this.errors = errors;
+    public void setRecipes(LinkedList<Entry> cat) {
+        this.cat = cat;
     }
 
     public int getDistanceCat(int index) {

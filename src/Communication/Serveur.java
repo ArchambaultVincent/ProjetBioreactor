@@ -20,6 +20,7 @@ public class Serveur {
     private static int count = 0;
     private String response = "";
     Bio_Parameter param =null;
+
     public Serveur(String host, int port){
         param=new Bio_Parameter(0,0,0,0);
         try {
@@ -114,19 +115,24 @@ public class Serveur {
     }
 
     public Bio_Parameter Get_Param(){
-
-        Send("","");
+        Send("REQUEST","");
         try{
             read();
             Analyse_Awnser();
-
+            read();
+            Analyse_Awnser();
+            read();
+            Analyse_Awnser();
+            read();
+            Analyse_Awnser();
+            read();
+            Analyse_Awnser();
+            read();
+            Analyse_Awnser();
         }
         catch (IOException e){
 
         }
-
-
-
         return param;
     }
 

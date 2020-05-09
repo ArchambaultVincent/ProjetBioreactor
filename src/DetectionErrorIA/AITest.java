@@ -11,15 +11,7 @@ public class AITest {
         LinkedList<String> settings = new LinkedList<>();
         String type ="";
         String row;
-        BufferedReader csvReader = new BufferedReader(new FileReader("./Simulation/result/simtest.csv"));
-        while ((row = csvReader.readLine()) != null) {
-            String[] data = row.split(";");
-            Error err = new Error();
-            settings.add(data[1]);
-            type=data[2];
-        }
-        csvReader.close();
-        KohonenThread kohonenTh1 = new KohonenThread(settings, type);
+        KohonenThread kohonenTh1 = new KohonenThread("C:\\Users\\Archambault Vincent\\IdeaProjects\\ProjetBioreactor\\Simulation\\result");
 
         kohonenTh1.start();
 
@@ -31,8 +23,6 @@ public class AITest {
             BufferedWriter writer3 = new BufferedWriter(new FileWriter("./src/DetectionErrorIA/SortiIA.csv"));
             PrintWriter print = new PrintWriter(writer3);
             String data = "";
-
-
             print.write(data);
             writer3.close();
 
@@ -43,9 +33,8 @@ public class AITest {
 
         for (Category cat : kohonen1.getClusters()) {
             System.out.println("**************** NEXT CATEGORY ****************");
-
-            for (Error error : cat.getRecipes()) {
-                System.out.println(error.getName());
+            for (Entry entry : cat.getCategory()) {
+                System.out.println(entry.getName());
             }
         }
     }

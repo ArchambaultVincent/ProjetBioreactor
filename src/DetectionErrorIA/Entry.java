@@ -4,40 +4,25 @@ import java.util.LinkedList;
 
 
 public class Entry {
-    private LinkedList<SettingsWeight> data;
-
-    // Titles for w/e reasons
-    private LinkedList<SettingsWeight> dataTitles;
+    private LinkedList<Double> data;
 
     private String errorName;
 
-    public Entry(LinkedList<SettingsWeight> data, LinkedList<SettingsWeight> dataTitles, String errorName) {
+    public Entry(LinkedList<Double> data,  String errorName) {
         this.data = data;
-        this.dataTitles = dataTitles;
         this.errorName = errorName;
     }
 
-    public LinkedList<SettingsWeight> getData() {
+    public LinkedList<Double> getData() {
         return data;
     }
 
-    public void setData(LinkedList<SettingsWeight> data) {
+    public void setData(LinkedList<Double> data) {
         this.data = data;
     }
 
-    public LinkedList<SettingsWeight> getDataTitles() {
-        return dataTitles;
-    }
 
-    public void setDataTitles(LinkedList<SettingsWeight> dataTitles) {
-        this.dataTitles = dataTitles;
-    }
-
-    public String getErrorName() {
+    public String getName() {
         return errorName;
-    }
-
-    public void setErrorName(String errorName) {
-        this.errorName = errorName;
     }
 }
