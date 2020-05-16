@@ -5,7 +5,7 @@
   Time: 22:41
   To change this template use File | Settings | File Templates.
 --%>
-  <%@include file="includes/header.jsp"%>
+<%@include file="includes/header.jsp"%>
 <body>
 <div class="container-fluid" style="background: linear-gradient(#4fc2ef, #91f9a5); height: 100vh;width:100vw;padding-top: 10%;">
   <div class="border rounded position-absolute" style="background: white; height:500px; width: 70%; left:15%;">
@@ -26,22 +26,22 @@
 <%--      <div class="tab-pane" id="text-auto" role="tabpanel">Le mode automatique permet d'optimiser la culture de bio masse et d'&eacute;viter les incidents du bior&eacute;acteur.</div>--%>
 <%--    </div>--%>
     <!-- Form -->
-    <div class="row pl-2">
-      <!-- Parameters -->
-      <div class="col-6">
-        <!-- Subtitle -->
-        <div class="text-center">
-          <h3>Param&egrave;tres</h3>
-        </div>
-        <div>
-          <form>
+    <form action="home.jsp" method="get">
+      <div class="row pl-2">
+        <!-- Parameters -->
+        <div class="col-6">
+          <!-- Subtitle -->
+          <div class="text-center">
+            <h3>Param&egrave;tres</h3>
+          </div>
+          <div>
             <label for="rangePH">pH</label>
             <div class="row">
               <div class="col">
                 <input type="range" class="custom-range" min="0" max="14" id="rangePH" oninput="inputPH.value=rangePH.value">
               </div>
               <div class="col-2">
-                <input class="form-control" type="number" step="1" min="0" max="14" id="inputPH" value="7" oninput="rangePH.value=inputPH.value">
+                <input class="form-control" type="number" step="1" min="0" max="14" id="inputPH" value="7" name="inputPH" oninput="rangePH.value=inputPH.value">
               </div>
             </div>
             <label for="rangeTemp">Temp&eacute;rature - &deg;C</label>
@@ -50,7 +50,7 @@
                 <input type="range" class="custom-range" min="0" max="100" id="rangeTemp" oninput="inputTemp.value=rangeTemp.value">
               </div>
               <div class="col-2">
-                <input class="form-control" type="number" step="1" min="0" max="100" id="inputTemp" value="50" oninput="rangeTemp.value=inputTemp.value">
+                <input class="form-control" type="number" step="1" min="0" max="100" id="inputTemp" value="50" name="inputTemp" oninput="rangeTemp.value=inputTemp.value">
               </div>
             </div>
             <label for="rangeDO2">DO<spans>2</spans> - %</label>
@@ -59,41 +59,41 @@
                 <input type="range" class="custom-range" min="0" max="100" id="rangeDO2" oninput="inputDO2.value=rangeDO2.value">
               </div>
               <div class="col-2">
-                <input class="form-control" type="number" step="1" min="0" max="100" id="inputDO2" value="50" oninput="rangeDO2.value=inputDO2.value">
+                <input class="form-control" type="number" step="1" min="0" max="100" id="inputDO2" value="50" name="inputDO2" oninput="rangeDO2.value=inputDO2.value">
               </div>
             </div>
-          </form>
+        </div>
+        </div>
+        <!-- Automation -->
+        <div class="col-6">
+          <!-- Subtitle -->
+          <div class="text-center">
+            <h3>Intelligences Artificielles</h3>
+          </div>
+          <!-- Switches -->
+          <div style="margin-top: 100px;padding-left: 35%;">
+          <!-- Optimisation switch -->
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="switchOptimisation" name="switchOptimisation" onchange="getSwitchOpti()">
+              <input type="hidden" id="valueOptimisation" name="valueOptimisation" value="0">
+              <label class="custom-control-label" for="switchOptimisation">Optimisation</label>
+            </div>
+            <!-- Fault Detection switch -->
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="switchFaultDetection" name="switchFaultDetection" onchange="getSwitchFault()">
+              <input type="hidden" id="valueFaultDetection" name="valueFaultDetection" value="0">
+              <label class="custom-control-label" for="switchFaultDetection">D&eacute;tection d'erreur</label>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- Automation -->
-      <div class="col-6">
-        <!-- Subtitle -->
-        <div class="text-center">
-          <h3>Intelligences Artificielles</h3>
-        </div>
-        <!-- Switches -->
-        <div style="margin-top: 100px;padding-left: 35%;">
-        <!-- Optimisation switch -->
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="switchOptimisation">
-            <label class="custom-control-label" for="switchOptimisation">Optimisation</label>
-          </div>
-          <!-- Fault Detection switch -->
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="switchFaultDetection">
-            <label class="custom-control-label" for="switchFaultDetection">D&eacute;tection d'erreur</label>
-          </div>
-        </div>
+      <!-- Buttons -->
+      <div class="position-absolute" style="bottom: 10px;right: 10px;">
+        <input type="reset" class="btn btn-outline-secondary border-0" value="Annuler">
+        <input type="submit" class="btn btn-primary" value="Lancer">
       </div>
     </div>
-    <!-- Buttons -->
-    <div class="position-absolute" style="bottom: 10px;right: 10px;">
-      <button type="button" class="btn btn-primary">Annuler</button>
-      <button type="button" class="btn btn-primary">Lancer</button>
-    </div>
-  </div>
-
-
+  </form>
 </div>
 <%@include file="includes/functions-js.jsp"%>
 <%@include file="includes/transition-js.jsp"%>

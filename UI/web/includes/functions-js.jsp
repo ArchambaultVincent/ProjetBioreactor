@@ -29,6 +29,31 @@
         $('#text-man').css('display','none')
     })
 
+    // Switches for IA
+    let opti = $('#switchOptimisation')
+    let fdi = $('#switchFaultDetection')
+
+    // Get the values in the cookies
+    $('#switchOptimisation').val(0)
+    $('#switchFaultDetection').val(0)
+
     /* ==== FUNCTIONS ==== */
-    // Make input text only accept number between 0 and 14 or 100
+    /* Change the value of INPUT HIDDEN of valueOptimisation */
+    function getSwitchOpti() {
+        if ($('#switchOptimisation').is(":checked")) {
+            $('#valueOptimisation').val(1)
+        } else {
+            $('#valueOptimisation').val(0)
+        }
+    }
+    /* Change the value of INPUT HIDDEN of valueFaultDetection */
+    function getSwitchFault() {
+        $('#switchFaultDetection').val()
+
+        if ($('#switchFaultDetection').is(":checked")) {
+            $('#valueFaultDetection').val(1)
+        } else {
+            $('#valueFaultDetection').val(0)
+        }
+    }
 </script>
