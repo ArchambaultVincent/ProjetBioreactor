@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/chart/Chart.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 
     <script src="js/jquery/jquery.js"></script>
     <script src="js/chart/Chart.min.js"></script>

@@ -18,3 +18,10 @@
     url('./fonts/nunito-v12-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
     url('./fonts/nunito-v12-latin-regular.svg#Nunito') format('svg'); /* Legacy iOS */
 }
+
+.phScale {
+    padding-top: .25rem!important;
+    padding-bottom: .25rem!important;
+    padding-right: 0.4rem!important;
+    padding-left: .4rem!important;
+}
