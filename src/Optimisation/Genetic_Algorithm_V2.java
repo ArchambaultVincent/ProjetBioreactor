@@ -11,9 +11,9 @@ public class Genetic_Algorithm_V2 {
     private double Ph=0.0;
     private double Temp=0.0;
     private double DO2=0.0;
-    private double PHfitness = 0.5; // PH
+    private double PHfitness = 2; // PH
     private double Tempfitness = 2;// TEMP
-    private double Dofitness =0.2; // DO2
+    private double Dofitness =0.9; // DO2
     private int echantillion=20;
     private double biomass=0.0;
     private double biomass_rate=0.0;
@@ -91,16 +91,16 @@ public class Genetic_Algorithm_V2 {
      * @param b
      */
     public void Mutation(Bio_Parameter b){
-        int GeneMuta=(int)Math.random()*5;
+        int GeneMuta=(int)Math.round(Math.random()*5);
         switch(GeneMuta) {
             case 0:
-            Ph = Math.max(Ph - PHfitness + Math.random() * ((Ph + PHfitness) - (Ph - PHfitness)), 0);
+            Ph =Math.min(9,Math.max(Ph - PHfitness + Math.random() * ((Ph + PHfitness) - (Ph - PHfitness)), 0));
             break;
             case 1:
-            Temp = Temp - Tempfitness + Math.random() * ((Temp + Tempfitness) - (Temp - Tempfitness));
+            Temp = Math.min(30,Temp - Tempfitness + Math.random() * ((Temp + Tempfitness) - (Temp - Tempfitness)));
             break;
             case 2:
-            DO2 = Math.max(DO2 - Dofitness + Math.random() * ((DO2 + Dofitness) - (DO2 - Dofitness)), 0);
+            DO2 = Math.min(1,Math.max(DO2 - Dofitness + Math.random() * ((DO2 + Dofitness) - (DO2 - Dofitness)), 0));
             break;
             default:
             break;
@@ -193,7 +193,7 @@ public class Genetic_Algorithm_V2 {
             int index1;
             int index2;
             index1=Selection_BioParameter(list);
-            
+
             list.remove(index1);
             index2=(int)Math.round(Math.random()*(list.size()-1));
             bm=Crossover(bio.get(index1),bio.get(index2));

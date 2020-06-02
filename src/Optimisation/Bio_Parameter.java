@@ -4,7 +4,17 @@ public class Bio_Parameter {
    private double Ph;
    private double Temp;
    private double Do2;
-   private double Biomass;
+
+    public double getSubstract() {
+        return Substract;
+    }
+
+    public void setSubstract(double substract) {
+        Substract = substract;
+    }
+
+    private double Biomass;
+   private double Substract;
 
     public Bio_Parameter( double ph, double temp, double do2, double Biomass) {
         this.Ph = ph;

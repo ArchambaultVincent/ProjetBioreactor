@@ -15,18 +15,17 @@ public class Kohonen {
     private static final double EPSILON = 0.5;
     private static final double ALPHA = 0.125;
     private static final double BETA = 0.125;
-    private static final int NUM_NEURONS = 50;
-    private static final int NUM_LEARN = 500;
+    private static final int NUM_NEURONS = 30;
+    private static final int NUM_LEARN = 2000;
 
-    private String type;
     private LinkedList<Neuron> neurons;
     private LinkedList<Entry> entries;
     private LinkedList<Category> clusters;
-    private LinkedList<String> titles;
     private LinkedList<Integer> pickedEntries;
+    private LinkedList<Double> MaxArray ;
+
 
     public Kohonen(String directory) {
-        this.type = type;
         this.clusters = new LinkedList<>();
         this.neurons = new LinkedList<>();
         this.entries = new LinkedList<>();
@@ -44,7 +43,7 @@ public class Kohonen {
         double somme=0.0;
         int i =0;
         for ( i =0 ; i < function.size() ;i++){
-            somme=(function.get(0)+function.get(function.size()-1))/2+2*function.get(round(1+1/2));
+            somme+=(function.get(i)+function.get(function.size()-1))/2+2*function.get(round(1+1/2));
         }
         return somme +i/3;
     }
@@ -68,7 +67,6 @@ public class Kohonen {
                     double value= Double.parseDouble(data[j]);
                     data_Nformat.get(j).add(value);
                 }
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -96,7 +94,7 @@ public class Kohonen {
     }
 
     private void Normalize_Entry(){
-        LinkedList<Double> MaxArray= (LinkedList<Double>) entries.get(0).getData().clone();
+         MaxArray= (LinkedList<Double>) entries.get(0).getData().clone();
         for(int index=1 ; index < entries.size(); index++){
             for(int index2=0; index2 < entries.get(index).getData().size();index2++){
                 if(entries.get(index).getData().get(index2) > MaxArray.get(index2)){
@@ -113,6 +111,9 @@ public class Kohonen {
         }
     }
 
+    public LinkedList<Double> getMaxArray() {
+        return MaxArray;
+    }
 
     private int pickEntry() {
         if (pickedEntries.size() == 0) {
@@ -248,13 +249,32 @@ public class Kohonen {
             clusters.get(winner).getDistance().add(neurons.get(winner).getPotential());
             clusters.get(winner).getCategory().add(entries.get(index));
         }
+    }
 
+    public void reshapecluster(){
+        int i=0;
+        while(i < clusters.size()){
+            if(clusters.get(i).getCategory().size() <  3){
+                clusters.remove(i);
+            }
+            else{
+                if(clusters.get(i).getCategory().size() == 1){
+                    if(i > 0)
+                       clusters.get(i-1).getCategory().add(clusters.get(i).getCategory().get(0));
+                    else
+                        clusters.get(i+1).getCategory().add(clusters.get(i).getCategory().get(0));
+                    clusters.remove(i);
+                }
+                else
+                    i++;
+            }
+        }
         try {
             String disp = "";
             BufferedWriter writer2 = new BufferedWriter(
-                new FileWriter("./Simulation/result/resultKohonen/simtest.csv"));
+                    new FileWriter("./Simulation/result/resultKohonen/ResultCluster.csv"));
 
-            for (int index = 0; index < NUM_NEURONS; index++) {
+            for (int index = 0; index < clusters.size(); index++) {
                 for (int index2 = 0; index2 < clusters.get(index).getCategory().size(); index2++) {
                     disp = disp + clusters.get(index).getCategory().get(index2).getName() + ";";
                 }

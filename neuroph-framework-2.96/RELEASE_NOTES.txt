@@ -1,0 +1,110 @@
+Neuroph 2.96 Release Notes
+
+Neuroph 2.96 comes with various API improvements, several new features, more examples for standard introductory machine learning tasks, and 
+initial implementation of Java Visual Recognition API JSR381.
+
+API improvements are related to normalization methods, data set spliting/sampling, HE weight initialisation and kfold crossvalidation.
+There are also inital implementations of new neural network architectures like implementation of ART and LSTM.
+
+Samples project provides package org.neuroph.samples.standard10ml with examples of 10 standard machine learning problems 
+which are suitable for teaching neural networks and machine learning basics with Java.
+
+Also there are several contributions in Contrib project related to hyper parameter search and, backpropagation benchmarking, 
+and cross entropy loss function which are still not fully tested and integrated.
+
+This release also includes initial implementation of parts of Visual Recognition API, which is being developed as official 
+Java technology Standard for Visual Recognition tasks within JCP (Java Community Process).
+
+GitHub repository has also been reorganized so the framework and NeurophStudio GUI are now separate repositories.
+https://github.com/neuroph/NeurophFramework
+https://github.com/neuroph/NeurophStudio
+
+With develpoment of a number of advanced deep learning framework with support for GPU and distributed computing, such as 
+Tensorflow, PyTorch, Deeplearning4j and many others, the main purporse Of Neuroph is to be an entry level
+and educational software to introduce Java developers to field of neural networks and deep learning.
+
+At some universities it is being used as  first step to learn basic concepts and principles before moving to more advanced frameworks, 
+thanks to interactive examples, visualizations, readable source code and user friendly IDE-like environment.
+
+We're working on Neural Newtorks ExPLODE teaching methodology (EXploratory Programming and Learning Open Developemnt Environment)
+which will provide set of tools, tutorials and teaching methodology that will be the fastest way for Java developers to learn neural networks/machine learning.
+
+
+For existing Neuroph users who might need more advanced features and additional support we recommend to take a look at Deep Netts Platform https://deepnetts.com 
+Deep Netts Platform is built on same philosophy as Neuroph to create intuitive easy-to-use neural network/deep learning environment for software developers,
+and more advanced features and implementation. The future releases of Neuroph will include deep netts community edition, in order to 
+provide better support for convolutional networks for image recognition.
+
+And at the end, we want to announce the next release soon that will be based on Apache NetBeans 11, include support for
+ Deep Netts Community Edition, and generic standard Java machine learning and visual recognition API which is being developed within JSR 381.
+
+Many thanks to students from University of Belgrade, and other contributors and users all around the world who helped to build this release.
+Note that if some of the contibutions are not present in this release we'll integrate them in some of the next releases.
+
+
+
+
+--------------------
+-----------------
+
+Build learning/teaching materials based on neuroph
+
+
+Even if you are usiing Tensorflow, for initial lessons, interactive examples and readable code within familiar IDE like environment
+Our teaching practice shows that Neuroph is being used together as a complement in inital stages while explaining basic concepts, thanks to visualization, and friendly familiar environent
+
+Our teaching practice shows that Neuroph is being used together as a complement in inital stages while explaining basic concepts, thanks to visualization, and friendly familiar environent
+
+jsr 
+ExamplesVisRec impl
+neural networks Learning Platform
+
+
+The fastest way for Java developers to get started with neural networks Learning Platform and understand basic concepts and priciples, while coding and exploring readable and well documented source code.
+Upgrade your Java skills with neural networks
+Requires Basic Java not advanced - Also to learn Java Concepts
+
+Fastest way Software deveoper to start with neural networks
+Using Exploratory and Project based learning
+
+Neural Newtorks ExPLODE methodology
+
+!!!!!vis rec jsr standard is how to sclae java machine learning market
+
+
+For users that would like to get more support and still have neuroph hpilosophy easy to use, integrate, import with handy gui
+we would like to announce deveopment of DeepNetts Platform 
+
+For existing users that look for more advanced festuresm while keeping developer experience and ease of use and integration with higgher level of support
+we recommend to take a look at deep netts platform
+And general java developer friendly workflow 
+
+deep netts will be available soon (pre-register, ask for demo, demo video) estimated end of may
+najavi deep netts kroz neuroph release
+
+deep netts is based on lessons learned from building neuroph taking what is good, even better workflow, that allows fatser turnaround and experimentation,
+with ide-like environment and usability, development experience
+support for convolutional networks and more advanced features like and ocmmercial support
+
+deep netts commnity edition
+why was deep netts created:
+	easy to understand and use while adding more advanced features
+	keep neuroph suitable for learning and deep netts for 
+	
+support exploratory learning , run experiments
+
+help integration ond developered of common machine learning api, shared and resued among different machine learning libraries and frameworks in different domains
+
+
+
+By mapping basic concets and techinuques to Java classes
+to be user friendly, easy to use and inderstand how it works by looking to source code and api docs
+
+Deepnetts
+	more advanced, support
+	neuroph primary for learning and smaller projects, community support
+	afavnced features multithreaded
+
+ROADMAP
+
+multithreaded

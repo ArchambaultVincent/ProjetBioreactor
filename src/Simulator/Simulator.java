@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class Simulator {
     private double Reactor_volume;
     private double biomass;
+
+
     private double substrate_concentration;
     private double product;
     private double growth_rate;
@@ -156,7 +158,7 @@ public class Simulator {
             time++;
         }
         else{
-            writeResult();
+            //writeResult();
         }
     }
 
@@ -247,7 +249,7 @@ public class Simulator {
     }
 
     public double getTemp() {
-        return Temp;
+        return temp_Sensor.getSensor_value();
     }
 
     public void setTemp(double temp) {
@@ -255,7 +257,7 @@ public class Simulator {
     }
 
     public double getDo2() {
-        return Do2;
+        return do2_Sensor.getSensor_value();
     }
     public double getBiomass() {
         return biomass;
@@ -266,10 +268,13 @@ public class Simulator {
     }
 
     public double getPh() {
-        return Ph;
+        return ph_Sensor.getSensor_value();
     }
 
     public void setPh(double ph) {
         Ph = ph;
     }
+
+
+    public double getSubstrat() {  return substrate_concentration;    }
 }

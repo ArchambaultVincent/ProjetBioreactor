@@ -18,7 +18,7 @@ public class KohonenThread extends Thread {
 
         System.out.println("[KOHONEN: " + "] Clustering...");
         kohonen.clusterize();
-
+        kohonen.reshapecluster();
         System.out.println("[KOHONEN: " + "] Finished!");
     }
 

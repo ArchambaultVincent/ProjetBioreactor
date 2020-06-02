@@ -15,7 +15,6 @@ public class Serveur {
     private Socket connexion = null;
     private PrintWriter writer = null;
     private BufferedInputStream reader = null;
-    private Genetic_Algorithm gen_algo;
     private int id=0;
     private static int count = 0;
     private String response = "";
@@ -65,6 +64,22 @@ public class Serveur {
         String message=new String(message_byte);
         return message;
     }
+
+    public Bio_Parameter Get_ParamSim(){
+        Send("K","");
+        Analyse_Awnser();
+        Send("L","");
+        Analyse_Awnser();
+        Send("M","");
+        Analyse_Awnser();
+        Send("O","");
+        Analyse_Awnser();
+        Send("Q","");
+        Analyse_Awnser();
+        Bio_Parameter b = new Bio_Parameter(param.getPh(),param.getTemp(),param.getDo2(),param.getBiomass());
+        return param;
+    }
+
 
 
     //méthode d'envoie d'un message

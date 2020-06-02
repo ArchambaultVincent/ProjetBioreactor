@@ -1,0 +1,23 @@
+LIST OF FILES IN THIS DISTRIBUTION
+
+Framework
+	apidocs	javadoc documentation
+	libs	all 3rd party dependencies
+	*.jar	framework compiled binary
+	*-javadoc.jar	archived javadoc files
+	*-sources.jar	archived sources
+	core - core classes
+	imgrec - image recognition support
+	ocr - ocr support
+	contrib - misc contributions and ongoing development
+	samples - compiled examples
+	adapter - various integration classes for weka and java ml
+	
+
+neurophstudio-2.96.zip
+neurophstudio-linux-2.96.sh
+neurophstudio-windows-2.96.exe
+RELEASE_NOTES.TXT
+
+GETTING_STARTED.PDF
+LICENSE.TXT Apache 2.0 lICENSE
