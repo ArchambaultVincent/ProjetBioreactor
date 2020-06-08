@@ -23,6 +23,9 @@ public class Simulator {
     private double Ph;
     private double Do2;
     private double Temp;
+    private double Co2;
+    private double debit_dair;
+
     private int time=0;
     // on modifie les paramètres Senseur et réaction pour les cas d'erreur
     private Sensor ph_Sensor;
@@ -32,11 +35,12 @@ public class Simulator {
     private ArrayList<SimulatorState> sim;
     private ArrayList<Event> events;
     double tempPh[][] = new double[40][10];
-    public Simulator(String simulationName, double quantities,double substrate_concentration, int simulationTime,double Ph,double Do2, double Temp) {
+    public Simulator(String simulationName, double quantities,double substrate_concentration, int simulationTime,double Ph,double Do2, double Temp,double debit_dair) {
         this.biomass = quantities;
         this.simulationTime=simulationTime;
         this.simulationName = simulationName;
         this.substrate_concentration=substrate_concentration;
+        this.debit_dair=debit_dair;
         ph_Sensor = new Sensor();
         do2_Sensor = new Sensor();
         temp_Sensor = new Sensor();
@@ -132,7 +136,7 @@ public class Simulator {
             ph_Sensor.setSensor_value(Ph);
             temp_Sensor.setSensor_value(Temp);
             do2_Sensor.setSensor_value(Do2);
-            SimulatorState state=new SimulatorState(ph_Sensor.getSensor_value(),do2_Sensor.getSensor_value(),biomass,substrate_concentration,temp_Sensor.getSensor_value());
+            SimulatorState state=new SimulatorState(ph_Sensor.getSensor_value(),do2_Sensor.getSensor_value(),biomass,substrate_concentration,temp_Sensor.getSensor_value(),debit_dair,Co2);
             sim.add(state);
         }
         writeResult();
@@ -153,7 +157,7 @@ public class Simulator {
             ph_Sensor.setSensor_value(Ph);
             temp_Sensor.setSensor_value(Temp);
             do2_Sensor.setSensor_value(Do2);
-            SimulatorState state=new SimulatorState(ph_Sensor.getSensor_value(),do2_Sensor.getSensor_value(),biomass,substrate_concentration,temp_Sensor.getSensor_value());
+            SimulatorState state=new SimulatorState(ph_Sensor.getSensor_value(),do2_Sensor.getSensor_value(),biomass,substrate_concentration,temp_Sensor.getSensor_value(),debit_dair,Co2);
             sim.add(state);
             time++;
         }
@@ -209,6 +213,7 @@ public class Simulator {
                 break;
         };
     }
+
     public void writeResult(){
         BufferedWriter writer = null;
         String data=" ";
@@ -259,6 +264,7 @@ public class Simulator {
     public double getDo2() {
         return do2_Sensor.getSensor_value();
     }
+
     public double getBiomass() {
         return biomass;
     }
@@ -268,13 +274,33 @@ public class Simulator {
     }
 
     public double getPh() {
-        return ph_Sensor.getSensor_value();
-    }
+        return ph_Sensor.getSensor_value();}
 
     public void setPh(double ph) {
         Ph = ph;
     }
 
+    public double getSubstrat() {  return substrate_concentration;}
 
-    public double getSubstrat() {  return substrate_concentration;    }
+    public double getCo2() {
+        return Co2;
+    }
+
+    public void setCo2(double co2) {
+        Co2 = co2;
+    }
+
+    public double getDebit_dair() {
+        return debit_dair;
+    }
+
+    public void setDebit_dair(double debit_dair) {
+        this.debit_dair = debit_dair;
+    }
+
+    public void calcul_CO2(){
+        Co2=growth_rate/debit_dair;
+    }
+
+
 }

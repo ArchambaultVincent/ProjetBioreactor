@@ -31,5 +31,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JPA 2.0-2.0" level="project" />
     <orderEntry type="library" name="Mojarra-2.4.0" level="project" />
+    <orderEntry type="library" name="apidocs" level="project" />
   </component>
 </module>

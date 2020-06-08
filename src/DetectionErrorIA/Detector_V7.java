@@ -1,15 +1,14 @@
 package DetectionErrorIA;
 
 import Optimisation.Bio_Parameter;
+import Simulator.SimulatorState;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.nnet.MultiLayerPerceptron;
 import org.neuroph.util.TransferFunctionType;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -20,20 +19,20 @@ import static java.lang.Math.round;
 public class Detector_V7 {
 
     private MultiLayerPerceptron myMlPerceptron=null;
-    private int nbLayout=0;
-    private int nbCategory=0;
-    private int nbEntry=0;
-    private Kohonen kohonen;
-    private DataSet trainingSet;
-    int nbData=0;
-    double seuil = 0.1E-5;
-    ArrayList<ArrayList<Double>> listData  = new ArrayList<>();
+    protected int nbLayout=0;
+    protected int nbCategory=0;
+    protected int nbEntry=0;
+    protected Kohonen kohonen;
+    protected DataSet trainingSet;
+    protected int nbData=0;
+    protected double seuil = 0.1E-5;
+    protected ArrayList<ArrayList<Double>> listData  = new ArrayList<>();
 
-    ArrayList<Double> MaxVal = new ArrayList<>();
-    ArrayList<Double> MinVal = new ArrayList<>();
-    ArrayList<Double> MaxBiomass= new ArrayList<>();
-    ArrayList<Entry_Detector> entryTraining = new ArrayList<>();
-    ArrayList<Double> Maxecart = new ArrayList<>();
+    protected ArrayList<Double> MaxVal = new ArrayList<>();
+    protected ArrayList<Double> MinVal = new ArrayList<>();
+    protected ArrayList<Double> MaxBiomass= new ArrayList<>();
+    protected ArrayList<Entry_Detector> entryTraining = new ArrayList<>();
+    protected ArrayList<Double> Maxecart = new ArrayList<>();
 
     public Detector_V7(int nbLayout){
         this.nbLayout=nbLayout;
@@ -76,9 +75,18 @@ public class Detector_V7 {
         myMlPerceptron.learn(trainingSet);
         System.out.println("learning Success !");
         myMlPerceptron.save(Save);
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter("./Simulation/result/resultKohonen/"+Save+".csv"));
+            String data=nbEntry+";"+nbCategory;
+            writer.write(data);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    double moyenne(ArrayList<Double> array){
+    public double moyenne(ArrayList<Double> array){
         double somme =0.0;
         for(double val : array){
             somme+= val;
@@ -86,7 +94,7 @@ public class Detector_V7 {
         return  somme/array.size();
     }
 
-    private void Add_DataEntry(Bio_Parameter b,int time){
+    public void Add_DataEntry(Bio_Parameter b,int time){
         listData.get(0).add(b.getPh());
         listData.get(1).add(b.getDo2());
         //listData.get(2).add(b.getBiomass());
@@ -95,7 +103,7 @@ public class Detector_V7 {
         //listData.get(5).add((double)time);
     }
 
-    private void Simulate_Entry(int time,int timemax,ArrayList<ArrayList<Double>> ListSim ){
+    public void Simulate_Entry(int time,int timemax,ArrayList<ArrayList<Double>> ListSim ){
         for(int i=time; i < timemax ; i++){
             for(int j=0; j < nbEntry ; j++){
                 switch (j) {
@@ -120,14 +128,14 @@ public class Detector_V7 {
      */
     public int calculate_entry(Bio_Parameter b,int time,int timemax){
         nbData++;
-        int cat = 0;
-        double[] entry= new double[nbEntry];
-        Add_DataEntry(b,time);
-        if(nbData > 2) {
-            for (int i = 0; i < nbEntry ;i++) {
-                entry[i]=abs(listData.get(i).get(nbData-1)-moyenne(listData.get(i))) /Maxecart.get(i);
-            }
-            System.out.println(" entry: " + Arrays.toString(entry));
+            int cat = 0;
+            double[] entry= new double[nbEntry];
+            Add_DataEntry(b,time);
+            if(nbData > 2) {
+                for (int i = 0; i < nbEntry ;i++) {
+                    entry[i]=abs(listData.get(i).get(nbData-1)-moyenne(listData.get(i))) /Maxecart.get(i);
+                }
+                System.out.println(" entry: " + Arrays.toString(entry));
         myMlPerceptron.setInput(entry);
         myMlPerceptron.calculate();
         double[] output = myMlPerceptron.getOutput();
@@ -227,6 +235,7 @@ public class Detector_V7 {
         }
         nbData=0;
     }
+
     public void Normalize_Entry(DataSetRow dataset , Entry_Detector entry){
         int size= entry.getListDatatrain().size();
         double[] in=dataset.getInput();

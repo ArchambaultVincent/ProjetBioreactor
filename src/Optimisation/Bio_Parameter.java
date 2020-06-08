@@ -55,4 +55,9 @@ public class Bio_Parameter {
     public void setBiomass(double biomass) {
         Biomass = biomass;
     }
+
+    @Override
+    public String toString() {
+        return   Ph +";" + Temp + ";" + Do2 +";" + Biomass + ";" + Substract;
+    }
 }

@@ -9,13 +9,17 @@ public class SimulatorState {
     private double quantities;
     private double substrate;
     private double Temp;
+    private double debit_dair;
+    private double co2;
 
-    public SimulatorState(double ph, double do2, double quantities,double substrate, double temp) {
+    public SimulatorState(double ph, double do2, double quantities,double substrate, double temp , double debit_dair , double co2) {
         this.ph = ph;
         this.Do2 = do2;
         this.quantities = quantities;
         this.Temp = temp;
         this.substrate=substrate;
+        this.debit_dair=debit_dair;
+        this.co2=co2;
     }
 
 

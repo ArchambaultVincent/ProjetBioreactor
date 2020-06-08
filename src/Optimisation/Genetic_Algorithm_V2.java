@@ -1,9 +1,6 @@
 package Optimisation;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Genetic_Algorithm_V2 {
@@ -225,5 +222,36 @@ public class Genetic_Algorithm_V2 {
             index++;
         }
         return bio.get(indexmax);
+    }
+
+
+    public void Save_Best_Param(String FileName) {
+        BufferedWriter writer = null;
+        String data = " ";
+        Bio_Parameter best = Get_Best_Param();
+        try {
+            writer = new BufferedWriter(new FileWriter("./Simulation/result/result_Optimisation/"+FileName));
+            writer.write(best.toString());
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Load_Best_Param(String FileName){
+        try {
+            BufferedReader csvReader = new BufferedReader(new FileReader("./Simulation/result/result_Optimisation/"+FileName));
+            String row;
+            if ((row = csvReader.readLine()) != null) {
+                String[] entry_split = row.split(";");
+                double best_ph=  Double.parseDouble(entry_split[0]);
+                double best_temp=  Double.parseDouble(entry_split[1]);
+                double best_Do2=  Double.parseDouble(entry_split[2]);
+                double best_Biomass=  Double.parseDouble(entry_split[3]);
+                Bio_Parameter best_param= new Bio_Parameter(best_ph,best_temp,best_Do2,best_Biomass);
+                bio.add(best_param);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
