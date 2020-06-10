@@ -25,6 +25,9 @@ public class Simulator {
     private double Temp;
     private double Co2;
     private double debit_dair;
+    private double vitesse_rotation=0;
+
+
 
     private int time=0;
     // on modifie les paramètres Senseur et réaction pour les cas d'erreur
@@ -302,5 +305,11 @@ public class Simulator {
         Co2=growth_rate/debit_dair;
     }
 
+    public double getVitesse_rotation() {
+        return vitesse_rotation;
+    }
 
+    public void setVitesse_rotation(double vitesse_rotation) {
+        this.vitesse_rotation = vitesse_rotation;
+    }
 }
