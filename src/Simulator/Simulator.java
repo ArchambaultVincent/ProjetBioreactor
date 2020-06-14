@@ -78,7 +78,21 @@ public class Simulator {
      * calcul la croissance specifique maximal
      */
     private void grothRate_Calculation(){
-        double grothrateMax=tempPh[(int) Math.round(Temp)][(int)Math.round(Ph)];
+        double phget=Ph;
+        double tempget=Temp;
+        if(tempget>39){
+            tempget=39;
+        }
+        if(tempget < 0){
+            tempget = 0.0;
+        }
+        if(phget > 9){
+            phget = 9;
+        }
+        if(phget < 0){
+            phget = 0;
+        }
+        double grothrateMax=tempPh[(int) Math.round(tempget)][(int)Math.round(phget)];
         double Yell=0;
         if(Do2  < 0.1){
             grothrateMax+=growth_rate*0.05;

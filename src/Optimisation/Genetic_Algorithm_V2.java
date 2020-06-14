@@ -11,7 +11,7 @@ public class Genetic_Algorithm_V2 {
     private double PHfitness = 2; // PH
     private double Tempfitness = 2;// TEMP
     private double Dofitness =0.9; // DO2
-    private int echantillion=20;
+    private int echantillion=100;
     private double biomass=0.0;
     private double biomass_rate=0.0;
     private boolean Init=false;
