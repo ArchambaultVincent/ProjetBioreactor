@@ -316,7 +316,7 @@ public class Simulator {
     }
 
     public void calcul_CO2(){
-        Co2=growth_rate/debit_dair;
+        Co2=biomass_rate/debit_dair;
     }
 
     public double getVitesse_rotation() {
