@@ -1,0 +1,52 @@
+simulation_PHOFF_0.csv
+CLUSTER 1
+
+simulation_PHOFF_1.csv;
+simulation_PHOFF_2.csv;
+simulation_PHOFF_3.csv;
+simulation_PHOFF_4.csv;
+simulation_PHOFF_5.csv;
+simulation_PHOFF_6.csv;
+
+
+CLUSTER 2
+
+simulation_PHOFF_10.csv;
+simulation_PHOFF_11.csv;
+simulation_PHOFF_12.csv;
+simulation_PHOFF_13.csv;
+simulation_PHOFF_14.csv;
+simulation_PHOFF_15.csv;
+simulation_PHOFF_16.csv;
+simulation_PHOFF_7.csv;
+simulation_PHOFF_8.csv;
+simulation_PHOFF_9.csv;
+
+CLUSTER 3 
+
+simulation_normal_1.csv;
+simulation_normal_2.csv;
+simulation_normal_4.csv;
+
+
+CLUSTER 4
+
+simulation_TEMPOFF2_1.csv;
+simulation_TEMPOFF2_10.csv;
+simulation_TEMPOFF2_11.csv;
+simulation_TEMPOFF2_12.csv;
+simulation_TEMPOFF2_13.csv;
+simulation_TEMPOFF2_14.csv;
+simulation_TEMPOFF2_15.csv;
+simulation_TEMPOFF2_16.csv;
+simulation_TEMPOFF2_17.csv;
+simulation_TEMPOFF2_18.csv;
+simulation_TEMPOFF2_19.csv;
+simulation_TEMPOFF2_2.csv;
+simulation_TEMPOFF2_3.csv;
+simulation_TEMPOFF2_4.csv;
+simulation_TEMPOFF2_5.csv;
+simulation_TEMPOFF2_6.csv;
+simulation_TEMPOFF2_7.csv;
+simulation_TEMPOFF2_8.csv;
+simulation_TEMPOFF2_9.csv;

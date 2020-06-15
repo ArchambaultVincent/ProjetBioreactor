@@ -227,11 +227,13 @@ public class Genetic_Algorithm_V2 {
 
     public void Save_Best_Param(String FileName) {
         BufferedWriter writer = null;
-        String data = " ";
+        String data = "";
         Bio_Parameter best = Get_Best_Param();
         try {
             writer = new BufferedWriter(new FileWriter("./Simulation/result/result_Optimisation/"+FileName));
-            writer.write(best.toString());
+            data+=best.toString();
+            writer.write(data);
+            writer.close();
         }catch (IOException e) {
             e.printStackTrace();
         }
