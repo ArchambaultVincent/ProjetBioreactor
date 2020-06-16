@@ -5,6 +5,7 @@ import Simulator.SimulatorState;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
+import org.neuroph.core.input.Max;
 import org.neuroph.nnet.MultiLayerPerceptron;
 import org.neuroph.util.TransferFunctionType;
 
@@ -74,11 +75,13 @@ public class Detector_V7 {
         myMlPerceptron=new  MultiLayerPerceptron(TransferFunctionType.TANH, nbEntry, nbLayout,nbCategory );
         myMlPerceptron.learn(trainingSet);
         System.out.println("learning Success !");
-        myMlPerceptron.save(Save);
+        myMlPerceptron.save("./Simulation/result/resultKohonen/"+Save+".nnet");
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter("./Simulation/result/resultKohonen/"+Save+".csv"));
             String data=nbEntry+";"+nbCategory;
+            for(int index=0;index < Maxecart.size() ; index++)
+                data+=";"+ Maxecart.get(index);
             writer.write(data);
             writer.close();
         } catch (IOException e) {

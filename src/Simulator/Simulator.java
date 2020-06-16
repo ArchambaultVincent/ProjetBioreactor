@@ -326,4 +326,7 @@ public class Simulator {
     public void setVitesse_rotation(double vitesse_rotation) {
         this.vitesse_rotation = vitesse_rotation;
     }
+
+
+
 }

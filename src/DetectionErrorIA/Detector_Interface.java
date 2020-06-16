@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static java.lang.Math.abs;
@@ -21,7 +22,7 @@ public class Detector_Interface extends Detector_V7 {
     }
 
     public void Load_Neuronal(String Save) throws IOException {
-        NeuralNetwork loadedMlPerceptron = NeuralNetwork.createFromFile("./Simulation/result/resultKohonen/" + Save + ".nnet");
+        loadedMlPerceptron = NeuralNetwork.createFromFile("./Simulation/result/resultKohonen/" + Save + ".nnet");
         BufferedReader csvReader = new BufferedReader(new FileReader("./Simulation/result/resultKohonen/" + Save + ".csv"));
         int time=0;
         String row;
@@ -29,6 +30,12 @@ public class Detector_Interface extends Detector_V7 {
             String[] entry_split = row.split(";");
             nbEntry= Integer.parseInt(entry_split[0]);
             nbCategory= Integer.parseInt(entry_split[1]);
+            for(int index = 2 ; index < entry_split.length ;index++){
+                Maxecart.add(Double.parseDouble(entry_split[index]));
+            }
+        }
+        for(int index2=0; index2 < nbEntry ; index2++){
+            listData.add(new ArrayList<>());
         }
     }
 
