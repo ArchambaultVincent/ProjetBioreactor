@@ -139,7 +139,7 @@ public class Serveur {
                 writer.write(message);
                 writer.flush();
                 response=read();
-               // Analyse_Awnser();
+                Analyse_Awnser();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -166,7 +166,6 @@ public class Serveur {
         ByteBuffer byteBuffer = ByteBuffer.allocate(Float.BYTES);
             switch (command.charAt(2)) {
                 case 'P' :
-
                     subval[0]= response[6];
                     subval[1]= response[5];
                     subval[2]= response[4];
@@ -247,6 +246,8 @@ public class Serveur {
     public Bio_Parameter Get_Param(){
         Send("REQST",0.0f);
         try{
+            response=read();
+            Analyse_Awnser();
             response=read();
             Analyse_Awnser();
             response=read();

@@ -61,7 +61,7 @@ public class Bio_Parameter {
 
     @Override
     public String toString() {
-        return   Ph +";" + Temp + ";" + Do2 +";" + Biomass + ";" + Substract;
+        return   Ph +";" + Temp + ";" + Do2 +";" + Co + ";" + debit;
     }
 
     public double getCo() {
