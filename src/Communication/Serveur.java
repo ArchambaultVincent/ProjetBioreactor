@@ -237,7 +237,6 @@ public class Serveur {
                     byteBuffer.put(subval);
                     byteBuffer.flip();
                     val= byteBuffer.getFloat();
-                    param.setPh(val);
                     break;
             }
         System.out.println(val);
