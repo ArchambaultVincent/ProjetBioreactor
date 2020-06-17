@@ -6,10 +6,10 @@ package Simulator;
  *
  */
 public class Sensor {
-    private double sensor_value;
+    private float sensor_value;
 
 
-    private double bruit;
+    private float bruit;
     private String state;
 
     public Sensor() {
@@ -26,25 +26,25 @@ public class Sensor {
         this.state = state;
     }
 
-    public double getSensor_value() {
+    public float getSensor_value() {
         if(state.equals("OFF")) {
             return 0;
         }
         else {
-            return sensor_value-bruit+(Math.random()*bruit*2);
+            return sensor_value;
         }
     }
 
-    public void setSensor_value(double sensor_value) {
+    public void setSensor_value(float sensor_value) {
         this.sensor_value = sensor_value;
     }
 
 
-    public double getBruit() {
+    public float getBruit() {
         return bruit;
     }
 
-    public void setBruit(double bruit) {
+    public void setBruit(float bruit) {
         this.bruit = bruit;
     }
 

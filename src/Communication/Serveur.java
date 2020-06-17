@@ -25,6 +25,7 @@ public class Serveur {
         param=new Bio_Parameter(0,0,0,0);
         try {
             connexion = new Socket(host, port);
+
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -83,8 +84,8 @@ public class Serveur {
         return format_id;
     }
 
-    byte[] createMessage(String command,double value){
-        float f= (float) value;
+    byte[] createMessage(String command,float value){
+        float f= value ;
         byte[] message_byte=new byte [8];
         byte[] bytes=command.getBytes();
         byte[] id_byte=createId();
@@ -106,20 +107,21 @@ public class Serveur {
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];
         }
         System.out.println(hexChars);
-       // String message=new String(message_byte);
+        String message=new String(message_byte);
+        System.out.println(message);
         return message_byte;
     }
 
     public Bio_Parameter Get_ParamSim() throws UnsupportedEncodingException {
-        Send("K",0.0);
+        Send("K",0.0f);
         Analyse_Awnser();
-        Send("L",0.0);
+        Send("L",0.0f);
         Analyse_Awnser();
-        Send("M",0.0);
+        Send("M",0.0f);
         Analyse_Awnser();
-        Send("O",0.0);
+        Send("O",0.0f);
         Analyse_Awnser();
-        Send("Q",0.0);
+        Send("Q",0.0f);
         Analyse_Awnser();
         Bio_Parameter b = new Bio_Parameter(param.getPh(),param.getTemp(),param.getDo2(),param.getBiomass());
         return param;
@@ -128,7 +130,7 @@ public class Serveur {
 
 
     //méthode d'envoie d'un message
-    public void Send(String type,double value){
+    public void Send(String type,float value){
             try {
                 DataOutputStream writer =new DataOutputStream(connexion.getOutputStream());
                 reader = new BufferedInputStream(connexion.getInputStream());
@@ -137,16 +139,16 @@ public class Serveur {
                 writer.write(message);
                 writer.flush();
                 response=read();
-
+               // Analyse_Awnser();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
     }
 
-    public void Send_sim(String type,double value){
+    public void Send_sim(String type,float value){
         try {
             DataOutputStream writer =new DataOutputStream(connexion.getOutputStream());
-            reader = new BufferedInputStream(connexion.getInputStream());
+
             byte[] message=createMessage(type,value);
             writer.flush();
             writer.write(message);
@@ -160,16 +162,15 @@ public class Serveur {
         double val=0.0;
         byte[] subval = new byte[4];
         String command = new String(response, "UTF-8");
-        System.out.println(command.charAt(2));
+        System.out.println(command);
         ByteBuffer byteBuffer = ByteBuffer.allocate(Float.BYTES);
             switch (command.charAt(2)) {
                 case 'P' :
 
-                   subval[0]= response[6];
+                    subval[0]= response[6];
                     subval[1]= response[5];
                     subval[2]= response[4];
                     subval[3]= response[3];
-
                     byteBuffer.put(subval);
                     byteBuffer.flip();
                     val= byteBuffer.getFloat();
@@ -180,11 +181,31 @@ public class Serveur {
                     subval[1]= response[5];
                     subval[2]= response[4];
                     subval[3]= response[3];
+                    byteBuffer.put(subval);
+                    byteBuffer.flip();
+                    val= byteBuffer.getFloat();
+                    param.setTemp(val-273);
+                    break;
+                case 'O' :
+                    subval[0]= response[6];
+                    subval[1]= response[5];
+                    subval[2]= response[4];
+                    subval[3]= response[3];
+                    byteBuffer.put(subval);
+                    byteBuffer.flip();
+                    val= byteBuffer.getFloat();
+                    param.setCo(val/100);
+                    break;
+                case 'C' :
+                    subval[0]= response[6];
+                    subval[1]= response[5];
+                    subval[2]= response[4];
+                    subval[3]= response[3];
 
                     byteBuffer.put(subval);
                     byteBuffer.flip();
                     val= byteBuffer.getFloat();
-                    param.setTemp(val);
+                    param.setCo(val/100);
                     break;
                 case 'A' :
                     subval[0]= response[6];
@@ -195,7 +216,7 @@ public class Serveur {
                     byteBuffer.put(subval);
                     byteBuffer.flip();
                     val= byteBuffer.getFloat();
-                    param.setPh(val);
+                    param.setDebit(val);
                     break;
                 case 'D' :
                     subval[0]= response[6];
@@ -206,7 +227,7 @@ public class Serveur {
                     byteBuffer.put(subval);
                     byteBuffer.flip();
                     val= byteBuffer.getFloat();
-                    param.setDo2(val);
+                    param.setDo2(val/100);
                     break;
                 case 'N' :
                     subval[0]= response[6];
@@ -224,7 +245,7 @@ public class Serveur {
     }
 
     public Bio_Parameter Get_Param(){
-        Send("REQST",0.0);
+        Send("REQST",0.0f);
         try{
             response=read();
             Analyse_Awnser();
@@ -245,8 +266,11 @@ public class Serveur {
         return param;
     }
 
+    public void init_reader() throws IOException {
+        reader = new BufferedInputStream(connexion.getInputStream());
+    }
     //Méthode pour lire les réponses du client
-    private byte[] read() throws IOException{
+    public byte[] read() throws IOException{
         String response = "";
         int stream;
         byte[] b = new byte[8];

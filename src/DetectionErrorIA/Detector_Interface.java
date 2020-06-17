@@ -21,7 +21,7 @@ public class Detector_Interface extends Detector_V7 {
         super(nbLayout);
     }
 
-    public void Load_Neuronal(String Save) throws IOException {
+        public void Load_Neuronal(String Save) throws IOException {
         loadedMlPerceptron = NeuralNetwork.createFromFile("./Simulation/result/resultKohonen/" + Save + ".nnet");
         BufferedReader csvReader = new BufferedReader(new FileReader("./Simulation/result/resultKohonen/" + Save + ".csv"));
         int time=0;

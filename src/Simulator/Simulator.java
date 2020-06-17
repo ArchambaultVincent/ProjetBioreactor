@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Simulator {
-    private double Reactor_volume;
+    private float Reactor_volume;
     private double biomass;
 
 
@@ -15,17 +15,17 @@ public class Simulator {
     private double growth_rate;
     private double biomass_rate;
     private double substrate_rate;
-    private double product_rate;
-    private double k1;
-    private double k2;
+    private float product_rate;
+    private float k1;
+    private float k2;
     private Cells cells;
     private int simulationTime;
-    private double Ph;
-    private double Do2;
-    private double Temp;
-    private double Co2;
-    private double debit_dair;
-    private double vitesse_rotation=0;
+    private float Ph;
+    private float Do2;
+    private float Temp;
+    private float Co2;
+    private float debit_dair;
+    private float vitesse_rotation=0;
 
 
 
@@ -38,7 +38,7 @@ public class Simulator {
     private ArrayList<SimulatorState> sim;
     private ArrayList<Event> events;
     double tempPh[][] = new double[40][10];
-    public Simulator(String simulationName, double quantities,double substrate_concentration, int simulationTime,double Ph,double Do2, double Temp,double debit_dair) {
+    public Simulator(String simulationName, float quantities,float substrate_concentration, int simulationTime,float Ph,float Do2, float Temp,float debit_dair) {
         this.biomass = quantities;
         this.simulationTime=simulationTime;
         this.simulationName = simulationName;
@@ -79,12 +79,12 @@ public class Simulator {
      */
     private void grothRate_Calculation(){
         double phget=Ph;
-        double tempget=Temp;
+        float tempget=Temp;
         if(tempget>39){
             tempget=39;
         }
         if(tempget < 0){
-            tempget = 0.0;
+            tempget = 0.0f;
         }
         if(phget > 9){
             phget = 9;
@@ -210,13 +210,13 @@ public class Simulator {
         String[] Event=e.getType().split(";");
         switch(Event[0]){
             case "PH":
-                Ph=Double.parseDouble(Event[1]);
+                Ph=Float.parseFloat(Event[1]);
                 break;
             case "TEMP":
-                Temp=Double.parseDouble(Event[1]);
+                Temp=Float.parseFloat(Event[1]);
                 break;
             case "DO":
-                Do2=Double.parseDouble(Event[1]);
+                Do2=Float.parseFloat(Event[1]);
                 break;
             case "BRUIT":
                 e.getTarget().setstate("BRUIT");
@@ -254,11 +254,11 @@ public class Simulator {
         this.cells = cells;
     }
 
-    public double getReactor_volume() {
+    public float getReactor_volume() {
         return Reactor_volume;
     }
 
-    public void setReactor_volume(double reactor_volume) {
+    public void setReactor_volume(float reactor_volume) {
         Reactor_volume = reactor_volume;
     }
 
@@ -270,15 +270,15 @@ public class Simulator {
         this.simulationTime = simulationTime;
     }
 
-    public double getTemp() {
+    public float getTemp() {
         return temp_Sensor.getSensor_value();
     }
 
-    public void setTemp(double temp) {
+    public void setTemp(float temp) {
         Temp = temp;
     }
 
-    public double getDo2() {
+    public float getDo2() {
         return do2_Sensor.getSensor_value();
     }
 
@@ -286,44 +286,44 @@ public class Simulator {
         return biomass;
     }
 
-    public void setDo2(double do2) {
+    public void setDo2(float do2) {
         Do2 = do2;
     }
 
-    public double getPh() {
+    public float getPh() {
         return ph_Sensor.getSensor_value();}
 
-    public void setPh(double ph) {
+    public void setPh(float ph) {
         Ph = ph;
     }
 
     public double getSubstrat() {  return substrate_concentration;}
 
-    public double getCo2() {
+    public float getCo2() {
         return Co2;
     }
 
-    public void setCo2(double co2) {
+    public void setCo2(float co2) {
         Co2 = co2;
     }
 
-    public double getDebit_dair() {
+    public float getDebit_dair() {
         return debit_dair;
     }
 
-    public void setDebit_dair(double debit_dair) {
+    public void setDebit_dair(float debit_dair) {
         this.debit_dair = debit_dair;
     }
 
     public void calcul_CO2(){
-        Co2=biomass_rate/debit_dair;
+        Co2= (float) (biomass_rate/debit_dair);
     }
 
-    public double getVitesse_rotation() {
+    public float getVitesse_rotation() {
         return vitesse_rotation;
     }
 
-    public void setVitesse_rotation(double vitesse_rotation) {
+    public void setVitesse_rotation(float vitesse_rotation) {
         this.vitesse_rotation = vitesse_rotation;
     }
 
