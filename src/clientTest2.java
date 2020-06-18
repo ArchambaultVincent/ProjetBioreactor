@@ -141,7 +141,7 @@ public class clientTest2   extends Thread {
                 if (command.contains("REQST")) {
                     message=createMessage("P",PH);
                     dout.write(message);
-                    message=createMessage("T",TEMP);
+                    message=createMessage("T",TEMP+273f);
                     dout.write(message);
                     message=createMessage("A",debit*100);
                     dout.write(message);
