@@ -143,7 +143,7 @@ public class clientTest2   extends Thread {
                     dout.write(message);
                     message=createMessage("T",TEMP+273f);
                     dout.write(message);
-                    message=createMessage("A",debit*100);
+                    message=createMessage("A",debit);
                     dout.write(message);
                     message=createMessage("D",do2*100);
                     dout.write(message);
@@ -152,6 +152,8 @@ public class clientTest2   extends Thread {
                     message=createMessage("N",0.0f);
                     dout.write(message);
                     message=createMessage("U",0.0f);
+                    dout.write(message);
+                    message=createMessage("O",Co2*100);
                     dout.write(message);
                 } else {
                     switch (command.charAt(2)) {
@@ -188,7 +190,8 @@ public class clientTest2   extends Thread {
         thread.start();
         sim.addEvent("PH", "OFF", 25);
         for (int index2 = 0; index2 <= 50; index2++) {
-            sim.setCo2(Co2);
+            sim.calcul_CO2();
+            //sim.setCo2(Co2);
             sim.setDo2(do2);
             sim.setTemp(TEMP);
             sim.setPh(PH);

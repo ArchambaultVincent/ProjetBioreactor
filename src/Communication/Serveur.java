@@ -257,6 +257,8 @@ public class Serveur {
             Analyse_Awnser();
             response=read();
             Analyse_Awnser();
+            response=read();
+            Analyse_Awnser();
         }
         catch (IOException e){
 
