@@ -143,9 +143,9 @@ public class clientTest2   extends Thread {
                     dout.write(message);
                     message=createMessage("T",TEMP);
                     dout.write(message);
-                    message=createMessage("A",debit);
+                    message=createMessage("A",debit*100);
                     dout.write(message);
-                    message=createMessage("D",do2);
+                    message=createMessage("D",do2*100);
                     dout.write(message);
                     message=createMessage("S",6);
                     dout.write(message);
@@ -164,7 +164,7 @@ public class clientTest2   extends Thread {
                             dout.write(awnser);
                             break;
                         case 'D':
-                            do2 = val;
+                            do2 = val/100;
                             dout.write(awnser);
                             break;
                         case 'A':
@@ -172,7 +172,7 @@ public class clientTest2   extends Thread {
                             dout.write(awnser);
                             break;
                         case 'S':
-                            debit = val;
+                            debit = val/100;
                             dout.write(awnser);
                             break;
                     }
@@ -195,7 +195,6 @@ public class clientTest2   extends Thread {
             sim.SimulationStep();
             do2 = sim.getDo2();
             Co2 = (float) sim.getBiomass();
-            TEMP = sim.getTemp()+273;
             PH = sim.getPh();
             debit=sim.getDebit_dair();
             Thread.sleep(5000);
