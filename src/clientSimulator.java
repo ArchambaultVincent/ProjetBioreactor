@@ -13,7 +13,7 @@ public class clientSimulator extends Thread{
     private static float do2 =  0.8f;
     private static float Co2  = 0f;
     private static float TEMP  = 27f;
-    private static float PH = 7f;
+    private static float PH = 9f;
     private static float debit = 7f;
 
     public void run() {
@@ -42,19 +42,19 @@ public class clientSimulator extends Thread{
                     byteBuffer.flip();
                     float val= byteBuffer.getFloat();
                     switch (command.charAt(2)){
-                        case 'K' :
+                        case 'P' :
                             PH=val;
                             break;
-                        case 'L' :
-                            TEMP=val;
+                        case 'T' :
+                            TEMP=val-273;
                             break;
-                        case 'M' :
+                        case 'D' :
                             do2=val;
                             break;
-                        case 'O' :
+                        case 'A' :
                             Co2=val;
                             break;
-                        case 'V' :
+                        case 'S' :
                             debit=val;
                             break;
                     }
@@ -65,9 +65,9 @@ public class clientSimulator extends Thread{
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        Simulator sim = new Simulator("simtest_", 0.1f, 10,50,9f , 0.4f,27f,10f);
+        Simulator sim = new Simulator("simtest_", 0.1f, 10,50,PH , do2,TEMP,debit);
         Thread  thread= new clientSimulator();
-       // thread.start();
+        thread.start();
         Serveur  servWrite = new Serveur("86.245.165.184",4200);
         System.out.println("connection write réussi");
         for (int index2 = 0; index2 <= 50; index2++) {
@@ -81,12 +81,15 @@ public class clientSimulator extends Thread{
                  Co2 = (float) sim.getBiomass();
                  TEMP = sim.getTemp()+273;
                  PH = sim.getPh();
+                 debit=sim.getDebit_dair();
             servWrite.Send("M",do2*100);
             servWrite.Send("O",Co2*100);
             servWrite.Send("L",TEMP);
             servWrite.Send("K",PH);
+           // servWrite.Send("V",debit);
+            TEMP = TEMP-273;
             Thread.sleep(5000);
-            System.out.println(do2+""+Co2+""+TEMP+""+PH);
+            System.out.println("DO="+do2+"C0="+Co2+"TEMP="+TEMP+"PH="+PH);
         }
     }
 }
