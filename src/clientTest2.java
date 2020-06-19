@@ -15,7 +15,10 @@ public class clientTest2   extends Thread {
     private static float TEMP  = 27f;
     private static float PH = 9f;
     private static float debit = 7f;
-
+    private int  port=8888;
+     public clientTest2 (int Port){
+        this.port=Port;
+     }
 
     static byte[] createId() {
         int id = 0;
@@ -118,7 +121,7 @@ public class clientTest2   extends Thread {
         DataInputStream dis;
         DataOutputStream dout;
         try {
-            sSocket = new ServerSocket(8888);
+            sSocket = new ServerSocket(port);
             Socket s = sSocket.accept();
             System.out.println("connected ! ");
             dis = new DataInputStream(s.getInputStream());
@@ -186,8 +189,10 @@ public class clientTest2   extends Thread {
     }
     public static void main(String[] args) throws IOException, InterruptedException {
         Simulator sim = new Simulator("simtest_", 0.1f, 10,50,PH , do2,TEMP,debit);
-        Thread  thread= new clientTest2();
+        Thread  thread= new clientTest2(8888);
+        Thread  thread2= new clientTest2(8890);
         thread.start();
+        thread2.start();
         sim.addEvent("PH", "OFF", 25);
         for (int index2 = 0; index2 <= 50; index2++) {
             sim.calcul_CO2();

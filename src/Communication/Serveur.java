@@ -137,7 +137,6 @@ public class Serveur {
                 byte[] message=createMessage(type,value);
                 writer.flush();
                 writer.write(message);
-                writer.flush();
                 response=read();
                 Analyse_Awnser();
             } catch (IOException e1) {
