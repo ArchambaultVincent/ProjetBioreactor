@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@include file="includes/header.jsp"%>
+
 <body>
 <div class="container-fluid" style="background: linear-gradient(#4fc2ef, #91f9a5); height: 100vh;width:100vw;padding-top: 10%;">
   <div class="border rounded position-absolute" style="background: white; height:500px; width: 70%; left:15%;">
@@ -26,7 +27,7 @@
 <%--      <div class="tab-pane" id="text-auto" role="tabpanel">Le mode automatique permet d'optimiser la culture de bio masse et d'&eacute;viter les incidents du bior&eacute;acteur.</div>--%>
 <%--    </div>--%>
     <!-- Form -->
-    <form action="home.jsp" method="get">
+    <form action="index.jsp" method="get">
       <div class="row pl-2">
         <!-- Parameters -->
         <div class="col-6">
@@ -92,10 +93,8 @@
         <input type="reset" class="btn btn-outline-secondary border-0" value="Annuler">
         <input type="submit" class="btn btn-primary" value="Lancer">
       </div>
-    </div>
   </form>
 </div>
 <%@include file="includes/functions-js.jsp"%>
-<%@include file="includes/transition-js.jsp"%>
 <%@include file="includes/graph-js.jsp"%>
 </body>

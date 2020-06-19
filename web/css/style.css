@@ -1,0 +1,88 @@
+/* nunito-regular - latin */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/nunito-v12-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Nunito Regular'), local('Nunito-Regular'),
+    url('fonts/nunito-v12-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('fonts/nunito-v12-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('fonts/nunito-v12-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('fonts/nunito-v12-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('fonts/nunito-v12-latin-regular.svg#Nunito') format('svg'); /* Legacy iOS */
+}
+/* Overriding BOOTSTRAP */
+.custom-range {
+    height: 100%!important;
+}
+.list-group-item {
+    border-color: #808080;
+}
+/* modal */
+.borderActive {
+    border-color: #007bff!important;
+}
+.settingsIcon {
+    height: 32px!important;
+}
+/* nav */
+#navSwitch, #navSwitch:hover {
+    cursor: pointer;
+}
+.phScale {
+    padding: .25rem 0.4rem .25rem .4rem !important;
+}
+.settings {
+    border: 11px solid #808080;
+    border-radius: 0.5em;
+    background: #808080;
+}
+.airflow:hover, .ph:hover, .liquid:hover, .agitator:hover, .temperature:hover {
+    background: #2c5aa0;
+    border-color: #2c5aa0;
+}
+.subtitle {
+    margin-top: 6%;
+    padding-bottom: 1%;
+    text-align: center;
+    width: 100%;
+    font-size: large;
+    font-weight: 500;
+    background: transparent;
+    color: #808080;
+}
+.subtitle > svg {
+    fill: #808080;
+}
+.svg-arrow-airIn, .svg-arrow-phIn, .svg-arrow-liquidIn {
+    fill: #1e7e34;
+    stroke: #1e7e34;
+    display: none;
+}
+.svg-arrow-airOut, .svg-arrow-liquidOut {
+    fill: #7e702d;
+    stroke: #7e702d;
+    display: none;
+}
+#lines-bio > line {
+    display: none;
+}
+#pickSettings > div > div {
+    width: 160px!important;
+    text-align: center;
+}
+/* ==== GRAPHICS ==== */
+#scaleDo, #scalePh, #scaleTemperature, #scaleAgitator, #scaleGrowth {
+    display: none;
+}
+.clicked {
+    background-color: #7e3f75;
+    border-color: #b100bd;
+    color: white;
+}
+.hovered {
+    background-color: #d2f0ff;
+    border-color: #2f81ff;
+    color: #2f81ff;
+
+}

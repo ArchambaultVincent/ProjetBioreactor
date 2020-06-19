@@ -22,11 +22,11 @@
         <div class="navbar-nav">
             <a class="navbar-brand" href="#">
                 Graphiques
-                <img src="./img/bio_Graph.svg" width="35" height="35" class="d-inline-block align-top" alt="" loading="lazy">
+                <img src="img/bio_Graph.svg" width="35" height="35" class="d-inline-block align-top" alt="" loading="lazy">
             </a>
             <a class="navbar-brand" href="#">
                 Param&egrave;tres
-                <img src="./img/bio_Settings.svg" width="35" height="35" class="d-inline-block align-top" alt="" loading="lazy">
+                <img src="img/bio_Settings.svg" width="35" height="35" class="d-inline-block align-top" alt="" loading="lazy">
             </a>
         </div>
     </div>
